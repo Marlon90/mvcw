@@ -1,0 +1,42 @@
+<!--  <ul>
+	<li data-ng-repeat="article in articleData"
+		data-ng-click="foo(article)">{{article.name}}</li>
+</ul> -->
+<h3>Available Articles</h3>
+<hr>
+
+<table id="articleTable" class="tablesorter" onClick="getRow(event)" >
+	<thead>
+		<tr>
+			<!-- <th>Interne ID</th>
+			<th>Artikelnummer</th>
+			<th>Bezeichnung</th>
+			<th>Einkaufspreis</th>
+			<th>Verkaufspreis</th>
+			-->
+			<th class="id">Id&nbsp;<a x-ng-click="sort_by('id')"><i
+					class="icon-sort"></i></a></th>
+			<th class="name">Name&nbsp;<a x-ng-click="sort_by('name')"><i
+					class="icon-sort"></i></a></th>
+			<th class="description">Description&nbsp;<a
+				x-ng-click="sort_by('description')"><i class="icon-sort"></i></a></th>
+			<th class="field3">Field 3&nbsp;<a
+				x-ng-click="sort_by('field3')"><i class="icon-sort"></i></a></th>
+			<th class="field4">Field 4&nbsp;<a
+				x-ng-click="sort_by('field4')"><i class="icon-sort"></i></a></th>
+			<th class="field5">Field 5&nbsp;<a
+				x-ng-click="sort_by('field5')"><i class="icon-sort"></i></a></th>
+
+
+		</tr>
+	</thead>
+	<tbody>
+		<tr data-ng-repeat="article in articleData">
+			<td>{{article.id}}</td>
+			<td>{{article.number}}</td>
+			<td>{{article.name}}</td>
+			<td>{{article.cost}}</td>
+			<td>{{article.price}}</td>
+		</tr>
+	</tbody>
+</table>
