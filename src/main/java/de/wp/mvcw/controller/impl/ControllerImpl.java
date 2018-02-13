@@ -34,7 +34,7 @@ public class ControllerImpl implements ControllerWP {
 		return new ResponseEntity<List<Article>>(dataDao.list(), HttpStatus.OK);
 	}
 
-	@RequestMapping(path="/simple", method=RequestMethod.POST)
+	@RequestMapping(path = "/simple", method = RequestMethod.POST)
 	public void testsimple(@RequestBody Simple simple, HttpServletResponse response) {
 		System.out.println("jhfdjhfjhgf -> " + simple.getName());
 		if (simple.getName() == null) {
@@ -43,38 +43,34 @@ public class ControllerImpl implements ControllerWP {
 			response.setStatus(HttpStatus.OK.value());
 		}
 	}
-	
-	@RequestMapping(value="/save", method = RequestMethod.POST, consumes="application/json" )
-	public void saveOrUpdate(@RequestBody ArticleImpl article, HttpServletResponse response) {
-		
-		dataDao.saveOrUpdate(article);
 
-	}
 	
-	@RequestMapping(value="/delete", method = RequestMethod.POST, consumes="application/json" )
+	@RequestMapping(value = "/save", method = RequestMethod.POST, consumes = "application/json")
+	public void add(@RequestBody ArticleImpl article, HttpServletResponse response) {
+
+		dataDao.add(article);
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.POST, consumes = "application/json")
 	public void delete(@RequestBody ArticleImpl article, HttpServletResponse response) {
-		
-		dataDao.delete(article.getId());
 
+		dataDao.delete(article.getId());
+	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.POST, consumes = "application/json")
+	public void update(@RequestBody ArticleImpl article, HttpServletResponse response) {
+		
+		dataDao.update(article);
 	}
 	
-	@Override
-	public Article findById(Integer id) {
-		return null;
-	}
-
-	@Override
-	public Article findByName(String name) {
-		return null;
-	}
-
-	@Override
-	public void addOrUpdate(Article e) {
-
-	}
-
-	@Override
-	public void delete(Integer id) {
-
+	@RequestMapping (value = "/spam", method = RequestMethod.GET)
+	public void spam () {
+		
+		for (int i = 0; i < 50; i++) {
+			ArticleImpl temp = new ArticleImpl();
+			temp.setDescription("b" + i);
+			temp.setNummer(i+244);
+			dataDao.add(temp);
+		}
 	}
 }

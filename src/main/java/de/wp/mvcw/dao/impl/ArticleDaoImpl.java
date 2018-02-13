@@ -23,18 +23,10 @@ public class ArticleDaoImpl implements ArticleDao<Article, Integer> {
 	}
 
 	@Override
-	public void saveOrUpdate(Article e) {
-
-		if (e.getId() != null) {
-			// update
-			String sql = "UPDATE articles SET article_nummer=?, article_description=?, article_cost=?, article_price=?";
-			jdbcTemplate.update(sql, e.getNumber(), e.getName(), e.getCost(), e.getPrice());
-		} else {
-			// insert
-			String sql = "INSERT INTO articles (article_nummer, article_description, article_cost, article_price)"
-					+ " VALUES (?, ?,?,?)";
-			jdbcTemplate.update(sql, e.getNumber(), e.getName(), e.getCost(), e.getPrice());
-		}
+	public void add(Article article) {
+		// insert
+		String sql = "INSERT INTO articles (article_nummer, article_description, article_cost, article_price) VALUES (?,?,?,?)";
+		jdbcTemplate.update(sql, article.getNummer(), article.getDescription(), article.getCost(), article.getPrice());
 	}
 
 	@Override
@@ -44,12 +36,19 @@ public class ArticleDaoImpl implements ArticleDao<Article, Integer> {
 		jdbcTemplate.update(sql, articleId);
 	}
 
+	@Override
+	public void update(Article e) {
+		// update
+		String sql = "UPDATE articles SET article_nummer=?, article_description=?, article_cost=?, article_price=? WHERE article_id = ?";
+		jdbcTemplate.update(sql, e.getNummer(), e.getDescription(), e.getCost(), e.getPrice(), e.getId());
+	}
+
 	private static Article fromResult(ResultSet rs) throws SQLException {
 		Article article = new ArticleImpl();
 
 		article.setId(rs.getInt("article_id"));
-		article.setNumber(rs.getInt("article_nummer"));
-		article.setName(rs.getString("article_description"));
+		article.setNummer(rs.getInt("article_nummer"));
+		article.setDescription(rs.getString("article_description"));
 		article.setCost(rs.getInt("article_cost"));
 		article.setPrice(rs.getInt("article_price"));
 
@@ -85,4 +84,14 @@ public class ArticleDaoImpl implements ArticleDao<Article, Integer> {
 		});
 		return listArticles;
 	}
+	
+	public void go() {
+		
+		for (int i = 0; i < 50; i++) {
+			// insert
+			String sql = "INSERT INTO articles (article_nummer, article_description, article_cost, article_price) VALUES (?,?,?,?)";
+			jdbcTemplate.update(sql, i + 10, "b" + i, i, i);
+		}
+	}
+	
 }

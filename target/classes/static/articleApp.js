@@ -15,16 +15,6 @@ app.config(function($routeProvider) {
 	}), $routeProvider.when("/add", {
 		templateUrl : "views/add.html",
 		controller : "articleController"
-
-	}), $routeProvider.when("/change", {
-		templateUrl : "views/change.html",
-		controller : "articleController"
-
-	}), $routeProvider.when("/delete", {
-		templateUrl : "views/delete.html",
-		controller : "articleController"
-
 	});
 
 });
-

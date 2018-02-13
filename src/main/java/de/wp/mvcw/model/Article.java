@@ -1,12 +1,14 @@
 package de.wp.mvcw.model;
 
-public interface Article {
+import java.io.Serializable;
+
+public interface Article extends Serializable {
 
 	void setId(Integer id);
 
-	void setNumber(int number);
+	void setNummer(int number);
 
-	void setName(String name);
+	void setDescription(String description);
 
 	void setCost(int cost);
 
@@ -14,9 +16,9 @@ public interface Article {
 
 	Integer getId();
 
-	int getNumber();
+	int getNummer();
 
-	String getName();
+	String getDescription();
 
 	int getCost();
 

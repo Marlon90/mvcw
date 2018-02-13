@@ -4,62 +4,66 @@ import de.wp.mvcw.model.Article;
 
 public class ArticleImpl implements Article {
 
-	private Integer articleId;
-	private String articleName;
-	private int articleNumber;
-	private int articleCost;
-	private int articlePrice;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer id;
+	private String description;
+	private int nummer;
+	private int cost;
+	private int price;
 	
 	
 	@Override
 	public Integer getId() {
-		return articleId;
+		return id;
 	}
 
 	@Override
-	public int getNumber() {
-		return articleNumber;
+	public int getNummer() {
+		return nummer;
 	}
 
 	@Override
-	public String getName() {
-		return articleName;
+	public String getDescription() {
+		return description;
 	}
 
 	@Override
 	public int getCost() {
-		return articleCost;
+		return cost;
 	}
 
 	@Override
 	public int getPrice() {
-		return articlePrice;
+		return price;
 	}
 
 	@Override
 	public void setId(Integer id) {
-		this.articleId = id;
+		this.id = id;
 		
 	}
 
 	@Override
-	public void setNumber(int number) {
-		this.articleNumber = number;
+	public void setNummer(int nummer) {
+		this.nummer = nummer;
 	}
 
 	@Override
-	public void setName(String name) {
-		this.articleName = name;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
 	public void setCost(int cost) {
-		this.articleCost = cost;
+		this.cost = cost;
 	}
 
 	@Override
 	public void setPrice(int price) {
-		this.articlePrice = price;
+		this.price = price;
 	}
 
 }

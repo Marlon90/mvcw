@@ -4,39 +4,56 @@
 </ul> -->
 <h3>Available Articles</h3>
 <hr>
-
-<table id="articleTable" class="tablesorter" onClick="getRow(event)" >
-	<thead>
-		<tr>
-			<!-- <th>Interne ID</th>
-			<th>Artikelnummer</th>
-			<th>Bezeichnung</th>
-			<th>Einkaufspreis</th>
-			<th>Verkaufspreis</th>
-			-->
-			<th class="id">Id&nbsp;<a x-ng-click="sort_by('id')"><i
-					class="icon-sort"></i></a></th>
-			<th class="name">Name&nbsp;<a x-ng-click="sort_by('name')"><i
-					class="icon-sort"></i></a></th>
-			<th class="description">Description&nbsp;<a
-				x-ng-click="sort_by('description')"><i class="icon-sort"></i></a></th>
-			<th class="field3">Field 3&nbsp;<a
-				x-ng-click="sort_by('field3')"><i class="icon-sort"></i></a></th>
-			<th class="field4">Field 4&nbsp;<a
-				x-ng-click="sort_by('field4')"><i class="icon-sort"></i></a></th>
-			<th class="field5">Field 5&nbsp;<a
-				x-ng-click="sort_by('field5')"><i class="icon-sort"></i></a></th>
-
-
-		</tr>
-	</thead>
-	<tbody>
-		<tr data-ng-repeat="article in articleData">
-			<td>{{article.id}}</td>
-			<td>{{article.number}}</td>
-			<td>{{article.name}}</td>
-			<td>{{article.cost}}</td>
-			<td>{{article.price}}</td>
-		</tr>
-	</tbody>
-</table>
+<div id="table-wrapper">
+	<div id="table-scroll">
+		<div>
+			<table id="articleTable" class="tablesorter" onClick="getRow(event);">
+				<thead>
+					<tr>
+						<th><span class="text"> ID</span></th>
+						<th><span class="text">Artikelnummer</span></th>
+						<th><span class="text">Bezeichnung</span></th>
+						<th><span class="text">Einkaufspreis</span></th>
+						<th><span class="text">Verkaufspreis</span></th>
+					</tr>
+					<tr>
+						<th class="scrollbarhead" />
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="article in articleData">
+						<td>{{article.id}}</td>
+						<td>{{article.nummer}}</td>
+						<td>{{article.description}}</td>
+						<td>{{article.cost}}</td>
+						<td>{{article.price}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<br> <br>
+	<div>
+		<div>
+			<form id="inputForm" x-ng-submit="updateData()">
+				<label> <input id="articleId" type="text" name="articleId"
+					x-ng-model="articleId" placeholder="Id" readonly><input
+					id="articleNumber" type="text" name="articleNumber"
+					x-ng-model="articleNumber" placeholder="Artikelnummer" required>
+					<input x-ng-model="articleName" id="articleName" type="text"
+					name="articleName" placeholder="Artikelname" required> <input
+					x-ng-model="articleCost" id="articleCost" type="text"
+					name="articleCost" placeholder="Einkaufspreis" required> <input
+					x-ng-model="articlePrice" id="articlePrice" type="text"
+					name="articlePrice" placeholder="Verkaufspreis" required> <button onClick="clearFields()" >Clear fields</button> <br>
+					<br> <input x-ng-controller="insertController" class="submit"
+					type="submit" value="Add" x-ng-click="sendJson()" /> <br> <br>
+					<input x-ng-controller="updateController" class="submit"
+					type="submit" value="Update" x-ng-click="sendJson()" /> <input
+					x-ng-Controller="deleteController" class="submit" type="submit"
+					value="Delete" x-ng-click="sendJson()" />
+				</label>
+			</form>
+		</div>
+	</div>
+</div>
